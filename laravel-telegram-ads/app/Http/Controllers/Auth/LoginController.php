@@ -25,7 +25,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        if (auth()->user()->role === null) {
+            return route('role.selection');
+        }
+
+        switch (auth()->user()->role) {
+            case 'admin':
+                return route('admin.dashboard');
+            case 'publisher':
+                return route('publisher.dashboard');
+            case 'advertiser':
+                return route('advertiser.dashboard');
+            default:
+                return route('role.selection');
+        }
+    }
 
     /**
      * Create a new controller instance.

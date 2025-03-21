@@ -51,3 +51,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Google OAuth Routes
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('/auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback'])->name('login.google.callback');
+
+// Role Routes
+require __DIR__.'/role.php';
